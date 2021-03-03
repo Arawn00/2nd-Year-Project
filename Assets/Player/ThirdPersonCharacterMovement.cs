@@ -13,11 +13,19 @@ public class ThirdPersonCharacterMovement : MonoBehaviour
 // jump // 
     public bool playerIsGrounded = false;
     //Vitesse de saut
-    public float jumpSpeed = 8f;
+    public float jumpHeight = 8f;
     //Gravité
     float gravity = 20f;
  //Déplacement
     Vector3 moveDirection;
+
+
+void Start()
+{
+controller = gameObject.AddComponent<CharacterController>();    
+}
+
+
  
     void Update()
     {
@@ -40,7 +48,7 @@ public class ThirdPersonCharacterMovement : MonoBehaviour
              // Est-ce qu'on appuie sur le bouton de saut (ici : Espace)
         if (Input.GetButton("Jump") && controller.isGrounded)
             {
-            moveDirection.y = jumpSpeed;
+            moveDirection.y = jumpHeight;
             }
       else
         {

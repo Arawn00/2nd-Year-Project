@@ -8,7 +8,9 @@ public class Charactermovement : MonoBehaviour
     public float AccelerationFactor;
     public float DecelerationFactor;
     private Vector3 velocity;
- 
+
+
+
     // Update is called once per frame
     void Update()
     {
