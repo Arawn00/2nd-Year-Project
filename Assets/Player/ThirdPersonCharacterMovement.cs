@@ -22,7 +22,7 @@ public class ThirdPersonCharacterMovement : MonoBehaviour
 
 void Start()
 {
-controller = gameObject.AddComponent<CharacterController>();    
+controller = gameObject.GetComponent<CharacterController>();    
 }
 
 

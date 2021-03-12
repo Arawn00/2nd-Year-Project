@@ -4,18 +4,17 @@ using System.Collections;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject bullet;
-    public Rigidbody projectile;
     public Transform spawnpoint;
     public float projectilespeed = 100.0f;
-  
+    public Camera camera;
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-        Rigidbody projectileInstance;
-        projectileInstance= Instantiate(projectile,spawnpoint.position,spawnpoint.rotation) as Rigidbody;
-        projectileInstance.AddForce(Vector3.forward*projectilespeed);
+        GameObject projectile = Instantiate(bullet,spawnpoint.position,spawnpoint.rotation);
+        Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+        projectileRigidbody.AddForce(camera.transform.forward*projectilespeed);
         }
     }
 }

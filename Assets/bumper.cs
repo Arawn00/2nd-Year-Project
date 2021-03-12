@@ -14,6 +14,7 @@ public GameObject player;
 void Start()
 {
   player=GameObject.FindGameObjectWithTag ("Player"); // prends le game object en utilisant le tag player
+  
  
 }
     public void OnCollisionEnter(Collision collider) // Add thrust when collisions is true 
