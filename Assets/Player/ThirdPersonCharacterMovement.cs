@@ -9,6 +9,7 @@ public class ThirdPersonCharacterMovement : MonoBehaviour
     public float speed = 6f;
     public float turnSmoothTime =0.1f;
     float turnSmoothVelocity;
+    public GameObject charaanim;
 
 // jump // 
     public bool playerIsGrounded = false;
@@ -23,6 +24,7 @@ public class ThirdPersonCharacterMovement : MonoBehaviour
 void Start()
 {
 controller = gameObject.GetComponent<CharacterController>();    
+ 
 }
 
 
@@ -33,6 +35,23 @@ controller = gameObject.GetComponent<CharacterController>();
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal,0f,vertical).normalized;
 
+        //if (Input.GetKey("z")||Input.GetKey("up"))
+         //{
+          //charaanim.GetComponent<Animator>().Play("run");
+         //}
+
+        
+
+
+
+
+
+
+
+
+
+
+
         if (direction.magnitude>=0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg +cam.eulerAngles.y; // atan2 is a math function  return the angle between  the x-axis and the vector starting at 0 and terminating at x comma y. 
@@ -41,6 +60,8 @@ controller = gameObject.GetComponent<CharacterController>();
             
             Vector3 moveDir = Quaternion.Euler(0f,targetAngle,0f)* Vector3.forward;
             controller.Move(moveDir.normalized*speed*Time.deltaTime); //https://www.youtube.com/watch?v=4HpC--2iowE&t=690s&ab_channel=Brackeys//
+            charaanim.GetComponent<Animator>().Play("run"); // Anim Run 
+
         }
             // jump // 
              // Y = axe haut/bas
@@ -48,6 +69,7 @@ controller = gameObject.GetComponent<CharacterController>();
              // Est-ce qu'on appuie sur le bouton de saut (ici : Espace)
         if (Input.GetButton("Jump") && controller.isGrounded)
             {
+            charaanim.GetComponent<Animator>().Play("jump"); // Anim Jump 
             moveDirection.y = jumpHeight;
             }
       else
