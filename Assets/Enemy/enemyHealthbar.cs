@@ -29,7 +29,8 @@ public class enemyHealthbar : MonoBehaviour
     // put an enemy in the inspector here
     public GameObject enemy;
 
-    
+    private Animator anim;
+
     private void Awake()
     {
 
@@ -42,6 +43,7 @@ public class enemyHealthbar : MonoBehaviour
     void Start()
     {
         enemyDestroyed = false;
+        anim = GetComponent<Animator>();
     }
 
     
@@ -56,7 +58,9 @@ public class enemyHealthbar : MonoBehaviour
         //if health 0 - destroy object (calls a function below)
         if (currentHealthEnemy <= 0)
         {
-        Invoke("DestroyGameObject", 1f);
+        //anim.Play("Death");
+        enemy.GetComponent<Animator>().Play("Death");   
+        Invoke("DestroyGameObject", 6f);
         Debug.LogError("DESTROY");
         }
 
@@ -64,7 +68,7 @@ public class enemyHealthbar : MonoBehaviour
         // this is just to test if the slider works
         if (Input.GetKey("m"))
         {
-            currentHealthEnemy = currentHealthEnemy - damage;
+        currentHealthEnemy = currentHealthEnemy - damage;
         }
 
 
@@ -73,8 +77,8 @@ public class enemyHealthbar : MonoBehaviour
     //function that destroys object
     void DestroyGameObject()
     {
-        Destroy(gameObject);
-        enemyDestroyed = true;
+    Destroy(gameObject);
+    enemyDestroyed = true;
     }
 
     //function that makes an enemy take damage if he collides with object with tag damage, please put tag player on the object that will collide with an enemy (fireball)
